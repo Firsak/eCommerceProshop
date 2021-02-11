@@ -5,7 +5,7 @@ import {
   PRODUCT_LIST_SUCCESS
 } from '../constants/productConstants'
 
-const listProducs = () => async (dispatch) => {
+export const listProducts = () => async (dispatch) => {
   try {
     dispatch({type: PRODUCT_LIST_REQUEST})
 
@@ -19,8 +19,8 @@ const listProducs = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
-      payload: error.response && error.response.data
-        ? error.response.data.message
+      payload: error.response && error.response.data.detail
+        ? error.response.data.detail
         : error.message
     })
   }
