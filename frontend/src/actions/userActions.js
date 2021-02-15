@@ -16,7 +16,7 @@ export const login = (email, password) => async (dispatch) => {
 
     const config = {
       'headers': {
-        'Content-type': 'aplication'
+        'Content-type': 'application/json'
       }
     }
 
