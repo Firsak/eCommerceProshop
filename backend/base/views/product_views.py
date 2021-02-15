@@ -18,6 +18,12 @@ def getProducts(request):
 
 @api_view(['GET'])
 def getProduct(request, pk):
-    product = Product.objects.get(_id=pk)
-    serializer = ProductSerializer(product, many=False)
-    return Response(serializer.data)
+    try:
+        product = Product.objects.get(_id=pk)
+        serializer = ProductSerializer(product, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except:
+        message = {
+            'detail': "Product doesn't exists, or other error occurred"
+        }
+        return Response(message, status=status.HTTP_404_NOT_FOUND)

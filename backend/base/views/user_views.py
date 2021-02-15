@@ -61,6 +61,13 @@ def getUsers(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getUserProfile(request):
-    user = request.user
-    serializer = UserSerializer(user, many=False)
-    return Response(serializer.data)
+    try:
+        user = request.user
+        serializer = UserSerializer(user, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except:
+        message = {
+            'detail': "User doesn't exists, or other error occurred"
+        }
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
