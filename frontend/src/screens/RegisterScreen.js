@@ -6,7 +6,6 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import {login, register} from "../actions/userActions";
-import {wrapMergePropsFunc} from "react-redux/lib/connect/mergeProps";
 
 function RegisterScreen (props) {
   const {location, history} = props
