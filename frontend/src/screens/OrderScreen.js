@@ -24,7 +24,7 @@ function OrderScreen (props) {
     if (!order || order._id !== Number(orderId)) {
       dispatch(getOrderDetails(orderId))
     }
-  }, [order, orderId])
+  }, [dispatch, order, orderId])
 
 
 
