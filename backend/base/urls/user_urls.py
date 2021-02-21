@@ -9,4 +9,5 @@ urlpatterns = [
     path('profile/update/', user_views.updateUserProfile, name='user-profile-update'),
     path('', user_views.getUsers, name='users'),
 
+    path('delete/<str:pk>/', user_views.deleteUser, name='user-delete')
 ]
