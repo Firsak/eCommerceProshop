@@ -150,7 +150,7 @@ function ProfileScreen (props) {
                   <td>${order.totalPrice}</td>
                   <td>{order.isPaid ? (
                     <span>
-                      <i class="fas fa-check" style={{'color': 'green'}}></i> {order.paidAt.substring(0, 10)}
+                      <i className="fas fa-check" style={{'color': 'green'}}></i> {order.paidAt.substring(0, 10)}
                     </span>
                   ) : (
                     <i className="fas fa-times" style={{'color' : 'red'}}></i>
