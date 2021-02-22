@@ -5,7 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
-import {getUserDetails} from "../actions/userActions";
+import {getUserDetails, updateUser} from "../actions/userActions";
+import {USER_UPDATE_RESET} from "../constants/userConstants";
 
 function UserEditScreen (props) {
   const {match, location, history} = props
@@ -21,27 +22,35 @@ function UserEditScreen (props) {
   const userDetails = useSelector(state => state.userDetails)
   const {error, loading, user} = userDetails
 
+  const userUpdate = useSelector(state => state.userUpdate)
+  const {error: errorUpdate, loading: loadingUpdate, success: successUpdate} = userUpdate
+
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
 
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      if (!user || !user.name || user._id !== Number(userId)) {
-        dispatch(getUserDetails(userId))
+      if (successUpdate) {
+        dispatch({type: USER_UPDATE_RESET})
+        history.push('/admin/userlist')
       } else {
-        setName(user.name)
-        setEmail(user.email)
-        setIsAdmin(user.isAdmin)
+       if (!user || !user.name || user._id !== Number(userId)) {
+          dispatch(getUserDetails(userId))
+        } else {
+          setName(user.name)
+          setEmail(user.email)
+          setIsAdmin(user.isAdmin)
+        }
       }
     } else {
       history.push('/login')
     }
-  }, [user, userId])
+  }, [user, userId, successUpdate, history])
 
   const submitHandler = (e) => {
     e.preventDefault()
-
+    dispatch(updateUser({_id: user._id, name, email, isAdmin}))
   }
 
   return (
@@ -52,6 +61,9 @@ function UserEditScreen (props) {
 
       <FormContainer>
         <h1>Edit User</h1>
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant="danger" >{errorUpdate}</Message>}
+
         {loading ? <Loader /> : error ? <Message variant="danger" >{error}</Message> : (
           <Form onSubmit={submitHandler}>
 
