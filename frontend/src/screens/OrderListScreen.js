@@ -4,7 +4,7 @@ import {Table, Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import {listOrders} from "../actions/orderActions";
+import {listOrders, } from "../actions/orderActions";
 
 function OrderListScreen (props) {
   const {location, history} = props
