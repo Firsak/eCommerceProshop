@@ -67,7 +67,7 @@ def createProduct(request):
         return Response(message, status=status.HTTP_404_NOT_FOUND)
 
 
-@api_view(['GET'])
+@api_view(['PUT'])
 @permission_classes([IsAdminUser])
 def updateProduct(request, pk):
     try:
