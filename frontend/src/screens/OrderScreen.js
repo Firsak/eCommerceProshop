@@ -62,7 +62,7 @@ function OrderScreen (props) {
         setSdkReady(true)
       }
     }
-  }, [dispatch, order, orderId, successPay, successDeliver])
+  }, [dispatch, order, orderId, successPay, successDeliver, userInfo])
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult))
