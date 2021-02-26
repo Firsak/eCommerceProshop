@@ -2,6 +2,7 @@ import React from 'react';
 import {Navbar, Nav, Container, NavDropdown} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
+import SearchBox from "./SearchBox";
 import {logout} from "../actions/userActions";
 
 
@@ -62,6 +63,7 @@ function Header() {
               )}
 
             </Nav>
+            <SearchBox />
           </Navbar.Collapse>
 
         </Container>
