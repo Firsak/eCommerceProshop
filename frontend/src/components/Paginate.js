@@ -10,8 +10,6 @@ function Paginate (props) {
     keyword = keyword.split('?keyword=')[1].split('&')[0]
   }
 
-  console.log('KEYWORD', keyword)
-
   return (
     pages > 1 && (
       <Pagination>
